@@ -1,99 +1,308 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emma & James | Wedding</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emma & James | 14 February 2027</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<header class="hero">
-    <div class="overlay">
-        <h1>Emma & James</h1>
-        <p>We're Getting Married</p>
-        <h2>14 February 2027</h2>
+<!-- ============================= HERO ============================= -->
+<header class="hero" id="top">
+    <div class="hero-inner">
+        <span class="eyebrow">We're getting married</span>
+        <h1>Emma &amp; James</h1>
+        <div class="hero-rule"></div>
+        <p class="date">14 February 2027</p>
+        <p class="venue-line"><!-- TODO: confirm wording --> St Mary's Chapel &amp; The Grand Ballroom</p>
 
-        <a href="#details" class="button">View Details</a>
+        <div class="hero-ctas">
+            <a href="#rsvp" class="btn btn-primary">RSVP</a>
+            <a href="#day" class="btn btn-ghost">View the Day</a>
+        </div>
     </div>
+    <span class="scroll-cue">Scroll</span>
 </header>
 
-<nav>
+<!-- ============================= NAV ============================= -->
+<nav id="site-nav">
     <a href="#story">Our Story</a>
-    <a href="#details">Wedding</a>
-    <a href="#schedule">Schedule</a>
+    <a href="#day">The Day</a>
+    <a href="#stay">Stay</a>
+    <a href="#travel">Getting There</a>
+    <a href="#gifts">Gifts</a>
     <a href="#gallery">Gallery</a>
-    <a href="#rsvp">RSVP</a>
+    <a href="#rsvp" class="nav-rsvp">RSVP</a>
 </nav>
 
-<section id="story">
-    <h2>Our Story</h2>
-
+<!-- ============================= OUR STORY ============================= -->
+<section id="story" class="reveal">
+    <span class="eyebrow">Our Story</span>
+    <h2 style="font-style:italic;font-size:2rem;margin-bottom:20px;">How it began</h2>
     <p>
-        We met in 2021 and quickly discovered our shared love
-        for travel, coffee, and adventures. We can't wait to celebrate
-        this next chapter with our family and friends.
+        We met in 2021 and quickly discovered our shared love for travel, coffee, and
+        adventures. We can't wait to celebrate this next chapter with our family and friends.
     </p>
 </section>
 
-<section id="details">
-    <h2>Wedding Details</h2>
-
-    <div class="card">
-        <h3>Ceremony</h3>
-        <p>St Mary's Chapel</p>
-        <p>2:00 PM</p>
-    </div>
-
-    <div class="card">
-        <h3>Reception</h3>
-        <p>The Grand Ballroom</p>
-        <p>5:30 PM</p>
+<!-- ============================= QUICK FACTS ============================= -->
+<section id="details" class="reveal" style="padding-top:0;">
+    <div class="facts">
+        <div class="card">
+            <h3>Ceremony</h3>
+            <p>St Mary's Chapel <!-- TODO: address --></p>
+            <span class="time">2:00 PM</span>
+        </div>
+        <div class="card">
+            <h3>Reception</h3>
+            <p>The Grand Ballroom <!-- TODO: address --></p>
+            <span class="time">5:30 PM</span>
+        </div>
     </div>
 </section>
 
-<section id="schedule">
-    <h2>Schedule</h2>
+<!-- ============================= THE DAY / ITINERARY ============================= -->
+<section id="day" class="section-alt">
+  <div class="inner reveal">
+    <div class="section-head">
+        <span class="eyebrow">Itinerary</span>
+        <h2>The Day</h2>
+        <p>A loose shape for the day — exact timings will firm up closer to February.</p>
+    </div>
 
-    <ul>
-        <li>2:00 PM – Ceremony</li>
-        <li>3:00 PM – Photos</li>
-        <li>5:30 PM – Reception</li>
-        <li>7:00 PM – Dinner</li>
-        <li>8:30 PM – Dancing</li>
-    </ul>
+    <div class="timeline">
+        <div class="t-item">
+            <span class="t-dot"></span>
+            <span class="t-when">Early Afternoon</span>
+            <h3>Ceremony</h3>
+            <p>Please arrive with a little time to spare so we can all start together.</p>
+        </div>
+        <div class="t-item">
+            <span class="t-dot"></span>
+            <span class="t-when">Mid Afternoon</span>
+            <h3>Drinks &amp; Photos</h3>
+            <p>Bubbles on the lawn while we sneak off for photos — find us for a chat.</p>
+        </div>
+        <div class="t-item">
+            <span class="t-dot"></span>
+            <span class="t-when">Early Evening</span>
+            <h3>Reception Begins</h3>
+            <p>Doors open at the Grand Ballroom — find your seat and settle in.</p>
+        </div>
+        <div class="t-item">
+            <span class="t-dot"></span>
+            <span class="t-when">Evening</span>
+            <h3>Dinner &amp; Speeches</h3>
+            <p>A sit-down meal, a few words from the people who know us best.</p>
+        </div>
+        <div class="t-item">
+            <span class="t-dot"></span>
+            <span class="t-when">Night</span>
+            <h3>Dancing</h3>
+            <p>The tables get cleared, the band comes on — this part runs late.</p>
+        </div>
+    </div>
+
+    <p class="timeline-note">Full, timed schedule to follow nearer the day.</p>
+  </div>
 </section>
 
-<section id="gallery">
-    <h2>Gallery</h2>
+<!-- ============================= ACCOMMODATION ============================= -->
+<section id="stay" class="reveal">
+    <div class="section-head">
+        <span class="eyebrow">Accommodation</span>
+        <h2>Stay With Us</h2>
+        <p>There's a limited number of rooms on-site — here's how to grab one, and a
+           backup list for once they're gone.</p>
+    </div>
 
+    <div class="stay-grid">
+        <div class="stay-featured">
+            <h3>The Grand Ballroom Rooms <!-- TODO: real venue name --></h3>
+            <p>We've held a block of rooms on-site at a discounted rate for wedding guests.
+               First come, first served — <!-- TODO: real details --> book directly and
+               quote <strong>EMMAJAMES2027</strong> to get the wedding rate.</p>
+            <p><!-- TODO --> Rooms from £120/night · Booking cutoff: 1 January 2027</p>
+            <a href="#" class="btn btn-ghost">Book On-Site <!-- TODO: link --></a>
+        </div>
+
+        <div class="stay-more">
+            <h3 class="group-title">If that fills up…</h3>
+
+            <div class="stay-item">
+                <h4>The Oak Inn <!-- TODO --></h4>
+                <p>Cosy countryside pub with rooms, good breakfast.</p>
+                <span class="dist">10 min drive</span>
+            </div>
+            <div class="stay-item">
+                <h4>Riverside B&amp;B <!-- TODO --></h4>
+                <p>Quiet and comfortable, a short taxi from the venue.</p>
+                <span class="dist">15 min drive</span>
+            </div>
+            <div class="stay-item">
+                <h4>Countryside Travel Lodge <!-- TODO --></h4>
+                <p>Reliable budget option if you're travelling as a group.</p>
+                <span class="dist">20 min drive</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================= GETTING THERE ============================= -->
+<section id="travel" class="section-alt">
+  <div class="inner reveal">
+    <div class="section-head">
+        <span class="eyebrow">Directions</span>
+        <h2>Getting There</h2>
+        <p>Everything you need to find us, and where to leave the car.</p>
+    </div>
+
+    <div class="travel-grid">
+        <div class="map-wrap">
+            <!-- TODO: replace the query in the src URL below with your real venue address -->
+            <iframe
+                src="https://www.google.com/maps?q=St+Mary%27s+Chapel&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Map to the venue">
+            </iframe>
+        </div>
+
+        <div class="travel-info">
+            <h3>Address</h3>
+            <address>
+                St Mary's Chapel<!-- TODO --><br>
+                12 Chapel Lane<!-- TODO --><br>
+                Countryside, ST1 2AB<!-- TODO -->
+            </address>
+
+            <h3>Parking</h3>
+            <p><!-- TODO: real parking info -->
+               Free on-site parking is available for all guests — follow signs from the
+               main gate. The car park stays open overnight if you'd rather leave the car
+               and grab a taxi home.</p>
+
+            <h3>Public Transport</h3>
+            <p><!-- TODO --> The nearest station is a 15-minute taxi ride away; we'll share
+               a suggested train time once we know numbers.</p>
+        </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================= GIFTS ============================= -->
+<section id="gifts" class="reveal">
+    <svg class="divider" viewBox="0 0 56 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M0 10H22" stroke="currentColor" stroke-width="1"/>
+        <path d="M34 10H56" stroke="currentColor" stroke-width="1"/>
+        <path d="M28 3C24 6 24 14 28 17C32 14 32 6 28 3Z" stroke="currentColor" stroke-width="1"/>
+    </svg>
+    <span class="eyebrow">A small note</span>
+    <h2 style="font-style:italic;font-size:2rem;margin-bottom:18px;">Gifts</h2>
+    <p>Your presence at our wedding is the only gift we need. If you'd still like to
+       mark the day with something, a contribution towards our honeymoon would mean the
+       world to us.</p>
+    <a href="#" class="btn btn-outline">Contribute to Our Honeymoon <!-- TODO: link --></a>
+</section>
+
+<!-- ============================= GALLERY ============================= -->
+<section id="gallery" class="reveal">
+    <div class="section-head">
+        <span class="eyebrow">A Preview</span>
+        <h2>Gallery</h2>
+    </div>
     <div class="gallery">
-        <img src="images/couple.jpg" alt="">
-        <img src="images/couple.jpg" alt="">
-        <img src="images/couple.jpg" alt="">
+        <a href="images/couple.jpg"><img src="images/couple.jpg" alt="Emma and James"></a>
+        <a href="images/couple.jpg"><img src="images/couple.jpg" alt="Emma and James"></a>
+        <a href="images/couple.jpg"><img src="images/couple.jpg" alt="Emma and James"></a>
     </div>
 </section>
 
+<!-- ============================= RSVP ============================= -->
 <section id="rsvp">
-    <h2>RSVP</h2>
+    <div class="section-head reveal">
+        <span class="eyebrow">Kindly Reply</span>
+        <h2>RSVP</h2>
+        <p>Please let us know by <strong>1 January 2027</strong> — just fill in the card below.</p>
+    </div>
 
-    <p>Please let us know if you can attend.</p>
+    <div class="invite-card reveal">
+        <svg class="seal" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="26" cy="26" r="24" stroke="currentColor" stroke-width="1"/>
+            <path d="M26 14C20 19 20 33 26 38C32 33 32 19 26 14Z" stroke="currentColor" stroke-width="1"/>
+            <path d="M12 26H20M32 26H40" stroke="currentColor" stroke-width="1"/>
+        </svg>
+        <p class="rsvp-lede">We can't wait to celebrate with you</p>
 
-    <a class="button" href="https://forms.google.com" target="_blank">
-        RSVP Here
-    </a>
+        <form id="rsvp-form" novalidate>
+
+            <div class="field">
+                <label for="contact-name">Your name</label>
+                <input type="text" id="contact-name" name="contact-name" required autocomplete="name">
+            </div>
+
+            <div class="field">
+                <label>Who's joining you? <span class="hint" style="display:inline;">(everyone attending, including yourself)</span></label>
+                <div class="guest-rows" id="guest-rows">
+                    <div class="guest-row">
+                        <input type="text" class="guest-name" placeholder="Full name" required>
+                    </div>
+                </div>
+                <button type="button" class="add-guest" id="add-guest">+ Add another guest</button>
+            </div>
+
+            <div class="field">
+                <label>Will you be attending?</label>
+                <div class="radio-group">
+                    <label class="radio-pill">
+                        <input type="radio" name="attending" value="Yes" required>
+                        <span>Joyfully accept</span>
+                    </label>
+                    <label class="radio-pill">
+                        <input type="radio" name="attending" value="No">
+                        <span>Regretfully decline</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="dietary">Dietary requirements / allergies</label>
+                <textarea id="dietary" name="dietary" placeholder="Let us know about any allergies or dietary needs for your whole party"></textarea>
+            </div>
+
+            <div class="field">
+                <label for="song">Song request <span class="hint" style="display:inline;">(optional)</span></label>
+                <input type="text" id="song" name="song" placeholder="One that'll get you on the dance floor">
+            </div>
+
+            <div class="field">
+                <label for="rsvp-email">Email <span class="hint" style="display:inline;">(so we can reach you)</span></label>
+                <input type="email" id="rsvp-email" name="email" required autocomplete="email">
+            </div>
+
+            <div class="field">
+                <label for="message">Message for the couple <span class="hint" style="display:inline;">(optional)</span></label>
+                <textarea id="message" name="message" placeholder="Anything else you'd like to tell us"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary rsvp-submit">Send RSVP</button>
+            <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+    </div>
 </section>
 
+<!-- ============================= FOOTER ============================= -->
 <footer>
-    <p>We can't wait to celebrate with you ❤</p>
+    <p class="fh1">E &amp; J</p>
+    <p>We can't wait to celebrate with you — 14 February 2027</p>
 </footer>
 
 <script src="script.js"></script>
-
 </body>
 </html>
