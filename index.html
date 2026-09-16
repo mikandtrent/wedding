@@ -20,7 +20,7 @@
         <h1>Trent &amp; Mikhayla</h1>
         <div class="hero-rule"></div>
         <p class="date">Saturday 3 July 2027</p>
-        <p class="venue-line"><!-- TODO: confirm wording --> Buckland Estate</p>
+        <p class="venue-line">Buckland Estate</p>
 
         <div class="hero-ctas">
             <a href="#rsvp" class="btn btn-primary">RSVP</a>
@@ -42,7 +42,9 @@
 
 <!-- ============================= PHOTO BANNER ============================= -->
 <div class="photo-banner reveal">
-    <!-- TODO: swap for a favourite wide/landscape photo -->
+    <!-- TO DO: swap for a favourite wide/landscape photo -->
+         <!-- ORRR repeat basic invitation greeting - invited @ two-thirty p.m. to Buckland etc-->
+
     <img src="images/banner-1.jpg" alt="" aria-hidden="true">
 </div>
 
@@ -117,17 +119,23 @@
     <div class="section-head">
         <span class="eyebrow">Accommodation</span>
         <h2>Stay With Us</h2>
-        <p>If you would prefer to avoid the late-night drive home, there are some accommodation options if you would like to stay the night locally.</p>
+        <p>If you would prefer to avoid the late-night drive home, there are local accommodation options for the weekend.</p>
     </div>
 
     <div class="stay-grid">
-        <div class="stay-featured" style="background-image:linear-gradient(160deg, rgba(79,80,31,.82), rgba(129,59,100,.86)), url('images/tents.jpg');">
+        <div class="stay-featured" style="background-image:linear-gradient(160deg, rgba(79,80,31,.82), rgba(122, 80, 104, 0.86)), url('images/tents.jpg');">
             <h3>Glamping at Buckland Estate</h3>
             <p>Buckland Estate has simple glamping tents available on the wedding evening for booking.</p>
             <p>Tents contain either a double bed or two twin beds.</p>
             <br><br>
-            <p><strong>$150/night · First come, first served</strong></p>
-            <a href="#" class="btn btn-ghost">Book On-Site <!-- TODO: link --></a>
+            <p><strong>$195/night · First come, first served</strong></p>
+            <p>Please select 03/07 — 04/07 check-in and check-out</p>
+            <a href="https://app.mews.com/distributor/9ac59437-aa56-42d0-b97b-b1230081fbbc?mewsAvailabilityBlockId=510b5e72-c8f5-4e18-a629-b32e0059aaaa&mewsStart=2027-07-02&mewsEnd=2027-07-04"
+            class="btn btn-ghost"
+            target="_blank"
+            rel="noopener noreferrer">
+                Book On-Site
+            </a>
         </div>
 
         <div class="stay-more">
@@ -228,6 +236,13 @@
         <img src="images/marquee-4.jpg" alt="">
         <img src="images/marquee-5.jpg" alt="">
         <img src="images/marquee-6.jpg" alt="">
+        <!-- duplicated for a seamless loop -->
+        <img src="images/marquee-1.jpg" alt="">
+        <img src="images/marquee-2.jpg" alt="">
+        <img src="images/marquee-3.jpg" alt="">
+        <img src="images/marquee-4.jpg" alt="">
+        <img src="images/marquee-5.jpg" alt="">
+        <img src="images/marquee-6.jpg" alt="">
     </div>
 </div>
 
@@ -276,7 +291,7 @@
             </div>
 
             <div class="field">
-                <label for="dietary">Dietary requirements / allergies</label>
+                <label for="song">Dietary requirements / allergies <span class="hint" style="display:inline;">(optional)</span></label>
                 <textarea id="dietary" name="dietary" placeholder="Let us know about any allergies or dietary needs for your whole party"></textarea>
             </div>
 
@@ -286,7 +301,7 @@
             </div>
 
             <div class="field">
-                <label for="rsvp-email">Email <span class="hint" style="display:inline;">(so we can reach you)</span></label>
+                <label for="rsvp-phone">Email or Phone Number <span class="hint" style="display:inline;">(so we can reach you)</span></label>
                 <input type="email" id="rsvp-email" name="email" required autocomplete="email">
             </div>
 
