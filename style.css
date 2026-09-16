@@ -1,24 +1,27 @@
 /* ==========================================================================
    Wedding site
-   Palette: jewel-tone berries/purples + botanical greens on warm parchment
+   Palette: dusk-lit parchment — oxblood, antique gilt & hillside green
    ========================================================================== */
 
 :root{
-    /* ---- color tokens (from supplied palette) ---- */
-    --parchment:   #F8F5F0;   /* page background */
-    --pearl:       #F1E5C1;   /* alt section / card background */
-    --old-rose:    #D68E96;   /* soft blush, small accents */
-    --carmine:     #B3263B;   /* primary call-to-action */
-    --berry:       #813B64;   /* brand / heading accent */
-    --velvet:      #684679;   /* deep accent, hero gradient */
-    --grape:       #4F508D;   /* deep accent, hero gradient */
-    --turf:        #3F7352;   /* botanical line-art, dividers */
-    --palm:        #94A472;   /* botanical secondary */
-    --gold:        #E9D491;   /* hairline, foil border, dots */
+    /* ---- color tokens (re-derived from the hero photograph) ---- */
+    --parchment:   #F5EEDF;   /* page background — the pale ivory dusk sky */
+    --pearl:       #EAD9B7;   /* alt section / card background — warm vellum, lace */
+    --old-rose:    #D9835F;   /* sunset coral — small accents (was pink, now the actual sky) */
+    --carmine:     #7A2A22;   /* primary call-to-action — antiqued oxblood / wax seal */
+    --berry:       #5C2331;   /* brand / heading accent — dusk wine */
+    --velvet:      #4A2E1E;   /* deep accent, hero gradient — chestnut hair / bark */
+    --grape:       #2A1D14;   /* deep accent, hero gradient — hillside silhouette */
+    --turf:        #33452F;   /* botanical line-art, dividers — hillside forest */
+    --palm:        #7C8362;   /* botanical secondary, muted sage */
+    --gold:        #D9BC7A;   /* hairline, foil border, dots — antique gilt */
 
-    --ink:         #2C1F27;   /* body text — warm near-black */
-    --ink-soft:    #5B4A54;   /* secondary text */
+    --ink:         #241A13;   /* body text — warm walnut near-black */
+    --ink-soft:    #5C4C3E;   /* secondary text */
     --white:       #FFFDF9;
+
+    /* ---- fine parchment grain, used as a site-wide texture overlay ---- */
+    --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
 
     /* ---- type ---- */
     --font-display: 'Cormorant Garamond', serif;
@@ -36,12 +39,26 @@
 html{ scroll-behavior:smooth; }
 
 body{
+    position:relative;
     font-family:var(--font-body);
     font-weight:300;
     color:var(--ink);
     line-height:1.7;
     background:var(--parchment);
     -webkit-font-smoothing:antialiased;
+}
+
+/* Fine, uniform paper grain over the entire page */
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image:var(--noise);
+    background-size:180px 180px;
+    opacity:.045;
+    mix-blend-mode:multiply;
+    pointer-events:none;
+    z-index:9999;
 }
 
 img{ max-width:100%; display:block; }
@@ -87,7 +104,7 @@ h1,h2,h3{
 
 .section-head p{ color:var(--ink-soft); font-size:1.02rem; }
 
-/* ---- botanical divider (signature motif, reused between sections) ---- */
+/* ---- botanical divider (reused between sections) ---- */
 .divider{
     width:56px;
     height:20px;
@@ -114,13 +131,15 @@ h1,h2,h3{
     transition:transform .35s var(--ease), box-shadow .35s var(--ease), background .3s, color .3s, border-color .3s;
 }
 
+/* Primary CTA - soft gradient + gold hairline */
 .btn-primary{
-    background:var(--carmine);
+    background:linear-gradient(155deg, var(--carmine) 0%, #52201b 130%);
     color:var(--white);
+    box-shadow:inset 0 0 0 1px rgba(217,188,122,.32);
 }
 .btn-primary:hover{
     transform:translateY(-2px);
-    box-shadow:0 10px 24px rgba(179,38,59,.32);
+    box-shadow:0 10px 24px rgba(122,42,34,.32), inset 0 0 0 1px rgba(217,188,122,.55);
 }
 
 .btn-ghost{
@@ -163,8 +182,8 @@ h1,h2,h3{
     content:"";
     position:absolute;
     inset:0;
+    /* Duotone overlay pulled from the photo's own dusk gradient — bark hillside fading through oxblood into the coral sky. */
     background:
-        /*linear-gradient(160deg, rgba(79,80,141,.72) 0%, rgba(129,59,100,.72) 55%, rgba(179,38,59,.68) 100%), */
         url("images/hero.jpg") center 30%/cover no-repeat;
     animation:hero-kenburns 24s ease-in-out infinite alternate;
 }
@@ -257,7 +276,7 @@ nav{
     position:sticky;
     top:0;
     z-index:40;
-    background:rgba(248,245,240,.92);
+    background:rgba(245,238,223,.92);
     backdrop-filter:blur(8px);
     padding:16px 20px;
     display:flex;
@@ -265,7 +284,7 @@ nav{
     align-items:center;
     gap:clamp(14px, 3vw, 34px);
     flex-wrap:wrap;
-    box-shadow:0 1px 0 rgba(44,31,39,.08);
+    box-shadow:0 1px 0 rgba(36,26,19,.08);
 }
 
 nav a{
@@ -335,7 +354,7 @@ section{
     aspect-ratio:4/5;
     object-fit:cover;
     border-radius:4px;
-    box-shadow:0 20px 44px rgba(44,31,39,.14);
+    box-shadow:0 20px 44px rgba(36,26,19,.16);
     border:6px solid var(--white);
     outline:1px solid var(--gold);
     outline-offset:-1px;
@@ -370,7 +389,7 @@ section{
     border-radius:4px;
     overflow:hidden;
     margin-bottom:32px;
-    box-shadow:0 14px 34px rgba(44,31,39,.1);
+    box-shadow:0 14px 34px rgba(36,26,19,.12);
 }
 .travel-photo img{ width:100%; height:100%; object-fit:cover; }
 
@@ -430,7 +449,7 @@ section{
 .lightbox{
     position:fixed;
     inset:0;
-    background:rgba(44,31,39,.92);
+    background:rgba(36,26,19,.92);
     z-index:100;
     display:flex;
     align-items:center;
@@ -478,8 +497,8 @@ section{
     border-radius:3px;
     width:260px;
     text-align:center;
-    box-shadow:0 14px 34px rgba(44,31,39,.07);
-    border-top:2px solid var(--gold);
+    box-shadow:0 14px 34px rgba(36,26,19,.09);
+    border-top:1px solid var(--gold);
 }
 .card h3{
     font-size:1.15rem;
@@ -584,7 +603,8 @@ section{
 @media (max-width:760px){ .stay-grid{ grid-template-columns:1fr; } }
 
 .stay-featured{
-    background:var(--berry);
+    /* soft gradient instead of a flat fill, echoing the hero */
+    background:linear-gradient(155deg, var(--berry) 0%, var(--velvet) 140%);
     color:var(--white);
     padding:40px 34px;
     border-radius:4px;
@@ -654,7 +674,7 @@ section{
     border-radius:4px;
     overflow:hidden;
     min-height:340px;
-    box-shadow:0 14px 34px rgba(44,31,39,.1);
+    box-shadow:0 14px 34px rgba(36,26,19,.12);
     filter:saturate(.82) sepia(.08);
 }
 .map-wrap iframe{ width:100%; height:100%; min-height:340px; border:0; display:block; }
@@ -702,7 +722,7 @@ section{
     max-width:none;
     padding:var(--section-pad) 20px;
     background:
-        radial-gradient(circle at 50% 0%, rgba(233,212,145,.14), transparent 55%),
+        radial-gradient(circle at 50% 0%, rgba(217,188,122,.16), transparent 55%),
         linear-gradient(160deg, var(--grape), var(--berry) 65%, var(--carmine) 130%);
     color:var(--white);
 }
@@ -719,7 +739,7 @@ section{
     border-radius:6px;
     padding:clamp(30px, 5vw, 56px);
     position:relative;
-    box-shadow:0 30px 60px rgba(0,0,0,.28);
+    box-shadow:0 30px 60px rgba(36,26,19,.34);
 }
 .invite-card::before{
     content:"";
@@ -846,6 +866,67 @@ section{
 }
 .form-status.success{ color:var(--turf); }
 .form-status.error{ color:var(--carmine); }
+
+/* ==========================================================================
+   Itinerary + Getting There — dusk-toned
+   ========================================================================== */
+
+.section-alt{
+    color:var(--parchment);
+}
+
+.section-alt .section-head p,
+.section-alt .t-item p,
+.section-alt .travel-info p,
+.section-alt .travel-info address,
+.section-alt .timeline-note{
+    color:rgba(245,238,223,.86);
+}
+
+.section-alt h2,
+.section-alt h3,
+.section-alt .eyebrow,
+.section-alt .t-item .t-when{
+    color:var(--gold);
+}
+
+
+/* ==========================================================================
+   THE DAY — dusk wine, vignette
+   ========================================================================== */
+
+#day{
+    background:
+        radial-gradient(120% 140% at 10% -15%, rgba(217,188,122,.09), transparent 55%),
+        linear-gradient(155deg, var(--berry) 0%, var(--velvet) 130%);
+}
+
+#day .timeline::before{
+    background:linear-gradient(
+        var(--gold),
+        var(--old-rose)
+    );
+}
+
+#day .t-dot{
+    background:var(--berry);
+    border-color:var(--gold);
+}
+
+
+/* ==========================================================================
+   GETTING THERE — hillside forest, deepening toward bark
+   ========================================================================== */
+
+#travel{
+    background:
+        radial-gradient(120% 140% at 90% -15%, rgba(124,131,98,.16), transparent 55%),
+        linear-gradient(155deg, var(--palm) 0%, var(--grape) 145%);
+}
+
+#travel .map-wrap{
+    box-shadow:0 14px 34px rgba(0,0,0,.28);
+}
 
 /* ==========================================================================
    Footer
