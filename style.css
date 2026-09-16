@@ -6,8 +6,8 @@
 :root{
     /* ---- color tokens (re-derived from the hero photograph) ---- */
     --parchment:   #F5EEDF;   /* page background — the pale ivory dusk sky */
-    --pearl:       #EAD9B7;   /* alt section / card background — warm vellum, lace */
-    --old-rose:    #D9835F;   /* sunset coral — small accents (was pink, now the actual sky) */
+    --pearl:       #EAD9B7;   /* alt section/card background — warm vellum, lace */
+    --old-rose:    #D68E96;   /* sunset coral — small accents */
     --carmine:     #7A2A22;   /* primary call-to-action — antiqued oxblood / wax seal */
     --berry:       #5C2331;   /* brand / heading accent — dusk wine */
     --velvet:      #4A2E1E;   /* deep accent, hero gradient — chestnut hair / bark */
