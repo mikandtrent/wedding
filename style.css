@@ -418,7 +418,7 @@ section{
     display:flex;
     gap:14px;
     width:max-content;
-    animation:marquee-scroll 45s linear infinite;
+    animation:marquee-scroll 60s linear infinite;
 }
 .marquee:hover .marquee-track{ animation-play-state:paused; }
 .marquee-track img{
