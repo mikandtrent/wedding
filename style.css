@@ -945,3 +945,195 @@ footer .fh1{
     color:var(--gold);
     margin-bottom:10px;
 }
+
+
+
+
+
+/* ==========================================================================
+   PATCH
+   ========================================================================== */
+
+/* ---- 1. Margin fix: section-alt was getting padding on BOTH the <section> and its .inner ---- */
+.section-alt{ padding:0; }
+
+/* ---- 2. Welcome letter ---- */
+.welcome-section{ max-width:860px; }
+
+.welcome-inner{
+    position:relative;
+    text-align:center;
+    background:var(--white);
+    padding:clamp(40px, 7vw, 76px) clamp(26px, 6vw, 80px);
+    border-radius:4px;
+    box-shadow:0 24px 54px rgba(36,26,19,.12);
+}
+/* gold inner frame, echoing the RSVP card */
+.welcome-inner::before{
+    content:"";
+    position:absolute;
+    inset:12px;
+    border:1px solid var(--gold);
+    border-radius:2px;
+    pointer-events:none;
+}
+.welcome-inner::after{
+    content:"";
+    position:absolute;
+    inset:18px;
+    border:1px solid rgba(217,188,122,.4);
+    border-radius:2px;
+    pointer-events:none;
+}
+
+.welcome-section h2{
+    font-size:clamp(2.4rem, 5vw, 3.4rem);
+    font-style:italic;
+    line-height:1.1;
+    margin-bottom:6px;
+}
+
+.welcome-divider{
+    width:90px;
+    height:1px;
+    background:linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin:26px auto;
+    position:relative;
+}
+.welcome-divider::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:9px;
+    height:9px;
+    background:var(--white);
+    border:1px solid var(--gold);
+    transform:translate(-50%,-50%) rotate(45deg);
+}
+
+.welcome-salutation{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-size:1.5rem;
+    color:var(--berry);
+    margin-bottom:18px;
+}
+
+.welcome-message{
+    max-width:600px;
+    margin:0 auto 16px;
+    font-size:1.15rem;
+    line-height:1.9;
+    color:var(--ink);
+}
+
+.welcome-signoff{
+    margin-top:34px;
+    font-family:var(--font-display);
+    font-style:italic;
+    font-size:1.25rem;
+    color:var(--ink-soft);
+    line-height:1.5;
+}
+.welcome-signoff span{
+    display:block;
+    margin-top:4px;
+    font-size:2rem;
+    font-weight:600;
+    color:var(--berry);
+}
+
+.welcome-date{
+    margin-top:30px;
+    font-size:.82rem;
+    font-weight:500;
+    letter-spacing:.24em;
+    text-transform:uppercase;
+    color:var(--turf);
+}
+
+/* ---- 3. FAQ ---- */
+#faq .inner{ max-width:780px; }
+
+#faq{ color:var(--ink); }
+#faq .eyebrow{ color:var(--turf); }
+#faq h2{ color:var(--berry); }
+#faq .section-head{ margin-bottom:40px; }
+
+.faq-list{ display:flex; flex-direction:column; gap:12px; }
+
+.faq-item{
+    background:var(--white);
+    border-radius:3px;
+    border-top:1px solid var(--gold);
+    box-shadow:0 8px 22px rgba(36,26,19,.07);
+    transition:box-shadow .3s var(--ease);
+}
+.faq-item[open]{ box-shadow:0 12px 28px rgba(36,26,19,.13); }
+
+.faq-item summary{
+    list-style:none;
+    cursor:pointer;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    padding:20px 26px;
+    font-size:.92rem;
+    font-weight:500;
+    letter-spacing:.1em;
+    color:var(--berry);
+}
+.faq-item summary::-webkit-details-marker{ display:none; }
+.faq-item summary::after{
+    content:"+";
+    flex-shrink:0;
+    font-family:var(--font-display);
+    font-size:1.7rem;
+    line-height:1;
+    color:var(--carmine);
+    transition:transform .3s var(--ease);
+}
+.faq-item[open] summary::after{ transform:rotate(45deg); }
+.faq-item summary:hover{ color:var(--carmine); }
+
+.faq-item p{
+    padding:0 26px 24px;
+    color:var(--ink-soft);
+    font-size:1.02rem;
+    line-height:1.75;
+}
+
+/* ---- 4. Slightly larger non-title text ---- */
+body{ font-size:1.06rem; }
+
+.eyebrow{ font-size:.8rem; }
+.section-head p{ font-size:1.1rem; }
+.btn{ font-size:.92rem; }
+nav a{ font-size:.82rem; }
+
+.hero .venue-line{ font-size:1.5rem; }       /* landing section left as-is */
+
+.t-item .t-when{ font-size:.8rem; }
+.t-item p{ font-size:1.05rem; }
+.timeline-note{ font-size:.95rem; }
+
+.stay-featured p{ font-size:1.03rem; }
+.stay-item .dist{ font-size:.78rem; }
+
+.travel-info p{ font-size:1.03rem; }
+.travel-info address{ font-size:1.08rem; }
+
+#gifts p{ font-size:1.13rem; }
+
+.field label{ font-size:.8rem; }
+.field .hint{ font-size:.85rem; }
+.field input[type="text"],
+.field input[type="email"],
+.field textarea{ font-size:1.02rem; }
+.radio-pill span{ font-size:.92rem; }
+.add-guest{ font-size:.86rem; }
+.form-status{ font-size:.98rem; }
+
+footer p{ font-size:.93rem; }
