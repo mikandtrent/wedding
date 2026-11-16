@@ -245,7 +245,33 @@
     <h2 style="font-style:italic;font-size:2rem;margin-bottom:18px;">Gifts</h2>
     <p>Your presence at our wedding is truly the only gift we need.</p>
     <p>If you'd still like to mark the day with something, a contribution towards our honeymoon would mean the world to us.</p>
-    <a href="#" class="btn btn-outline">Contribute to Our Honeymoon <!-- TO DO: link --></a>
+    <button type="button" class="btn btn-outline" id="payid-toggle" aria-expanded="false" aria-controls="payid-panel">
+        Contribute to Our Honeymoon
+    </button>
+
+    <div class="payid-panel" id="payid-panel" hidden>
+        <p class="payid-intro">You can send a contribution by PayID from your banking app.</p>
+
+        <dl class="payid-details">
+            <div class="payid-row">
+                <dt>PayID (mobile)</dt>
+                <dd>
+                    <span class="payid-value" id="payid-value" data-copy-text="0426902712">0426 902 712</span>
+                    <button type="button" class="payid-copy" data-copy="payid-value">Copy</button>
+                </dd>
+            </div>
+        </dl>
+
+        <p class="payid-note">
+            Your banking app will show our name once you enter the PayID — that's
+            how you'll know it's reached the right place.
+        </p>
+        <p class="payid-note">
+            In the description, pop in your name and what you'd like it to go towards —
+            a drink, a dinner, a night away, or the flights. We'll send you a photo
+            from the moment it pays for.
+        </p>
+    </div>
 </section>
 
 <!-- ============================= PHOTO WHEEL ============================= -->

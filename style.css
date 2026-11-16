@@ -1137,3 +1137,92 @@ nav a{ font-size:.82rem; }
 .form-status{ font-size:.98rem; }
 
 footer p{ font-size:.93rem; }
+
+/* ==========================================================================
+   PayID panel (Gifts section)
+   ========================================================================== */
+.payid-panel{
+    max-width:460px;
+    margin:26px auto 0;
+    padding:26px 28px;
+    text-align:left;
+    background:var(--white);
+    border:1px solid rgba(92,76,62,.18);
+    border-radius:4px;
+    box-shadow:0 14px 34px rgba(36,26,19,.10);
+    animation:payid-in .45s ease both;
+}
+@keyframes payid-in{
+    from{ opacity:0; transform:translateY(-8px); }
+    to{ opacity:1; transform:none; }
+}
+@media (prefers-reduced-motion:reduce){
+    .payid-panel{ animation:none; }
+}
+
+.payid-intro{
+    margin:0 0 18px;
+    font-size:.95rem;
+    color:var(--ink-soft);
+}
+
+.payid-details{ margin:0 0 18px; }
+.payid-row{
+    padding:12px 0;
+    border-top:1px solid rgba(92,76,62,.14);
+}
+.payid-row:last-child{ border-bottom:1px solid rgba(92,76,62,.14); }
+.payid-row dt{
+    margin:0 0 4px;
+    font-family:var(--font-body);
+    font-size:.72rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--palm);
+}
+.payid-row dd{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+    margin:0;
+}
+.payid-value{
+    font-family:var(--font-display);
+    font-size:1.22rem;
+    color:var(--berry);
+    overflow-wrap:anywhere;
+}
+
+.payid-copy{
+    flex:none;
+    padding:5px 13px;
+    font-family:var(--font-body);
+    font-size:.7rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--berry);
+    background:transparent;
+    border:1px solid var(--berry);
+    border-radius:2px;
+    cursor:pointer;
+    transition:background .2s ease, color .2s ease;
+}
+.payid-copy:hover{ background:var(--berry); color:var(--white); }
+.payid-copy.copied{
+    background:var(--turf);
+    border-color:var(--turf);
+    color:var(--white);
+}
+
+.payid-note{
+    margin:12px 0 0;
+    font-size:.88rem;
+    line-height:1.65;
+    color:var(--ink-soft);
+}
+
+@media (max-width:560px){
+    .payid-panel{ padding:22px 20px; }
+    .payid-value{ font-size:1.08rem; }
+}

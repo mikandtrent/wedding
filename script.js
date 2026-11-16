@@ -124,40 +124,34 @@ addGuestBtn.addEventListener("click", () => {
    4. RSVP form — submission
    --------------------------------------------------------------------- */
 /*
-   This site is static, so there's no server of its own to write to a
-   database. The recommended free setup is:
+   This site is static, so it has no server of its own. RSVPs are POSTed
+   to a Google Apps Script web app which appends ONE ROW PER GUEST to a
+   Google Sheet — that Sheet is the always-current guest list, and can be
+   downloaded as .xlsx or .csv at any time (File → Download).
 
-     1. Create a Google Form with matching questions (see SETUP-GUIDE.md).
-     2. Point GOOGLE_FORM_ACTION_URL and FIELD_MAP below at that form's
-        real action URL and entry IDs.
-     3. Every submission below lands as a new row in the Form's linked
-        Google Sheet automatically — that Sheet is your always-up-to-date
-        guest list, and can be downloaded as a CSV any time.
-     4. Add the Apps Script in reminder-emails.gs to that Sheet to send
-        automatic reminder emails to anyone who hasn't replied yet.
+   To connect it:
+     1. Create a new Google Sheet.
+     2. Extensions → Apps Script, paste in rsvp-backend.gs, save.
+     3. Deploy → New deployment → Web app
+          Execute as:      Me
+          Who has access:  Anyone
+     4. Copy the /exec URL it gives you into RSVP_ENDPOINT below.
 
-   Until you fill these in, the form will show a friendly error instead
-   of silently failing.
+   Full walkthrough with screenshots-worth of detail: SETUP-GUIDE.md
 */
-const GOOGLE_FORM_ACTION_URL = "https://docs.google.com/forms/d/e/REPLACE_WITH_YOUR_FORM_ID/formResponse"; // TODO
-const FIELD_MAP = {
-    contactName: "entry.111111111", // TODO: replace with your real entry IDs
-    guests:      "entry.222222222",
-    attending:   "entry.333333333",
-    partySize:   "entry.444444444",
-    dietary:     "entry.555555555",
-    song:        "entry.666666666",
-    email:       "entry.777777777",
-    message:     "entry.888888888"
-};
+const RSVP_ENDPOINT = "REPLACE_WITH_YOUR_WEB_APP_URL"; // TODO
 
 const rsvpForm = document.getElementById("rsvp-form");
 const formStatus = document.getElementById("form-status");
 
+function setStatus(text, kind) {
+    formStatus.textContent = text;
+    formStatus.className = "form-status" + (kind ? " " + kind : "");
+}
+
 rsvpForm.addEventListener("submit", async e => {
     e.preventDefault();
-    formStatus.textContent = "";
-    formStatus.className = "form-status";
+    setStatus("");
 
     const contactName = document.getElementById("contact-name").value.trim();
     const attendingInput = rsvpForm.querySelector('input[name="attending"]:checked');
@@ -167,51 +161,114 @@ rsvpForm.addEventListener("submit", async e => {
     const email = document.getElementById("rsvp-email").value.trim();
 
     if (!contactName || !attendingInput || guestNames.length === 0 || !email) {
-        formStatus.textContent = "Please fill in your name, at least one guest, whether you're attending, and your email.";
-        formStatus.classList.add("error");
+        setStatus("Please fill in your name, at least one guest, whether you're attending, and your email.", "error");
         return;
     }
 
-    if (GOOGLE_FORM_ACTION_URL.includes("REPLACE_WITH_YOUR_FORM_ID")) {
-        formStatus.textContent = "RSVP form isn't connected yet — see SETUP-GUIDE.md to finish wiring it up.";
-        formStatus.classList.add("error");
+    if (RSVP_ENDPOINT.startsWith("REPLACE_WITH")) {
+        setStatus("RSVP form isn't connected yet — see SETUP-GUIDE.md to finish wiring it up.", "error");
         return;
     }
 
-    const payload = new FormData();
-    payload.append(FIELD_MAP.contactName, contactName);
-    payload.append(FIELD_MAP.guests, guestNames.join("; "));
-    payload.append(FIELD_MAP.attending, attendingInput.value);
-    payload.append(FIELD_MAP.partySize, String(guestNames.length));
-    payload.append(FIELD_MAP.dietary, document.getElementById("dietary").value.trim());
-    payload.append(FIELD_MAP.song, document.getElementById("song").value.trim());
-    payload.append(FIELD_MAP.email, email);
-    payload.append(FIELD_MAP.message, document.getElementById("message").value.trim());
+    const payload = {
+        contactName,
+        email,
+        attending: attendingInput.value,
+        guests: guestNames,
+        dietary: document.getElementById("dietary").value.trim(),
+        song: document.getElementById("song").value.trim(),
+        message: document.getElementById("message").value.trim()
+    };
 
     const submitBtn = rsvpForm.querySelector(".rsvp-submit");
     submitBtn.disabled = true;
     submitBtn.textContent = "Sending…";
 
     try {
-        // Google Forms doesn't allow reading the response from the browser
-        // (that's what "no-cors" means below), so we can't confirm success
-        // directly — but the submission does go through. See SETUP-GUIDE.md.
-        await fetch(GOOGLE_FORM_ACTION_URL, {
+        // text/plain keeps this a "simple" CORS request, so the browser
+        // skips the preflight OPTIONS call that Apps Script can't answer.
+        const res = await fetch(RSVP_ENDPOINT, {
             method: "POST",
-            mode: "no-cors",
-            body: payload
+            headers: { "Content-Type": "text/plain;charset=utf-8" },
+            body: JSON.stringify(payload)
         });
 
-        formStatus.textContent = "Thank you! Your RSVP has been recorded.";
-        formStatus.classList.add("success");
+        const result = await res.json();
+        if (!result.ok) throw new Error(result.error || "Unknown error");
+
+        setStatus("Thank you! Your RSVP has been recorded.", "success");
         rsvpForm.reset();
         guestRows.querySelectorAll(".guest-row").forEach((row, i) => { if (i > 0) row.remove(); });
         updateAddGuestVisibility();
     } catch (err) {
-        formStatus.textContent = "Something went wrong sending your RSVP — please try again, or email us directly.";
-        formStatus.classList.add("error");
+        console.error("RSVP submission failed:", err);
+        setStatus("Something went wrong sending your RSVP — please try again, or email us directly.", "error");
     } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = "Send RSVP";
     }
+});
+
+/* ---------------------------------------------------------------------
+   5. Gifts — PayID panel
+   --------------------------------------------------------------------- */
+/*
+   A PayID isn't a web address, so there's nothing to link to — the button
+   reveals the details instead, with a one-tap copy so nobody has to
+   retype an email address into their banking app.
+
+   Put your real details in the panel in index.html (search for
+   REPLACE_WITH_YOUR_PAYID).
+*/
+const payidToggle = document.getElementById("payid-toggle");
+const payidPanel = document.getElementById("payid-panel");
+
+if (payidToggle && payidPanel) {
+    payidToggle.addEventListener("click", () => {
+        const open = payidPanel.hasAttribute("hidden");
+        if (open) {
+            payidPanel.removeAttribute("hidden");
+        } else {
+            payidPanel.setAttribute("hidden", "");
+        }
+        payidToggle.setAttribute("aria-expanded", String(open));
+    });
+}
+
+document.querySelectorAll(".payid-copy").forEach(btn => {
+    btn.addEventListener("click", async () => {
+        const source = document.getElementById(btn.dataset.copy);
+        if (!source) return;
+        // Copy the unformatted value when one is given, so it pastes cleanly
+        // into a banking app (digits only, no spaces).
+        const text = (source.dataset.copyText || source.textContent).trim();
+
+        try {
+            if (navigator.clipboard && window.isSecureContext) {
+                await navigator.clipboard.writeText(text);
+            } else {
+                // Fallback for older mobile browsers and non-HTTPS contexts.
+                const scratch = document.createElement("textarea");
+                scratch.value = text;
+                scratch.setAttribute("readonly", "");
+                scratch.style.position = "absolute";
+                scratch.style.left = "-9999px";
+                document.body.appendChild(scratch);
+                scratch.select();
+                document.execCommand("copy");
+                scratch.remove();
+            }
+
+            const original = btn.textContent;
+            btn.textContent = "Copied";
+            btn.classList.add("copied");
+            setTimeout(() => {
+                btn.textContent = original;
+                btn.classList.remove("copied");
+            }, 2000);
+        } catch (err) {
+            console.error("Copy failed:", err);
+            // Leave the text on screen — the guest can still select it manually.
+        }
+    });
 });
